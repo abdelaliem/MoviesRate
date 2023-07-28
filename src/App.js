@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const average = (arr) =>{
   console.log(arr)
@@ -15,6 +15,7 @@ export default function App() {
   const [isOpen3, setIsOpen3] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
 
+  const inputEl = useRef(null)
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
   const avgRuntime = average(watched.map((movie) =>(movie.Runtime)?.split(' ')[0]));
 
@@ -27,6 +28,14 @@ export default function App() {
     setIsOpen3(false)
     setWatched([...watched,data])
   }
+
+  useEffect(function(){
+    document.addEventListener('keydown',(e)=>callback(e))
+    function callback(e){
+      if (e.key === 'Enter') inputEl.current.focus()
+    }
+    inputEl.current.focus()
+  },[])
 
   useEffect(
     function () {
@@ -61,6 +70,7 @@ export default function App() {
           placeholder="Search movies..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          ref={inputEl}
         />
         <p className="num-results">
           {/* Found <strong>{movies.length}</strong> results */}
