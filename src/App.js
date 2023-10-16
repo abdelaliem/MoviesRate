@@ -50,11 +50,8 @@ export default function App() {
         setIsLoading(false);
       }
       fechingMovies();
-      return function(){
-        controller.abort()
-      }
     },
-    [query,controller]
+    [query]
   );
 
   return (
