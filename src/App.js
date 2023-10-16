@@ -42,7 +42,7 @@ export default function App() {
       async function fechingMovies() {
         setIsLoading(true);
         const res = await fetch(
-          `http://www.omdbapi.com/?apikey=1696f67e&s=${query}`
+          `https://www.omdbapi.com/?apikey=1696f67e&s=${query}`
         );
         const data = await res.json();
         console.log(data);
