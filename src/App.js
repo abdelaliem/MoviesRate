@@ -19,7 +19,7 @@ export default function App() {
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
   const avgRuntime = average(watched.map((movie) =>(movie.Runtime)?.split(' ')[0]));
 
-  const controller = new AbortController() 
+  // const controller = new AbortController() 
   function handleOnselect(id) {
     setIsOpen3(true);
     setSelectedId(id);
@@ -42,7 +42,7 @@ export default function App() {
       async function fechingMovies() {
         setIsLoading(true);
         const res = await fetch(
-          `http://www.omdbapi.com/?apikey=1696f67e&s=${query}`,{signal:controller.signal}
+          `http://www.omdbapi.com/?apikey=1696f67e&s=${query}`
         );
         const data = await res.json();
         console.log(data);
